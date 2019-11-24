@@ -13,6 +13,9 @@ pytesseract = "*"
 dateparser = "*"
 tqdm = "*"
 requests = "*"
+imutils = "*"
+
+
 [dev-packages]
 
 [requires]

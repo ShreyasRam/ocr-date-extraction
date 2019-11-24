@@ -9,8 +9,6 @@ import imutils
 import requests 
 import numpy as np
 from io import BytesIO
-import tempfile
-
 import cv2
 import logging
 import numpy as np
