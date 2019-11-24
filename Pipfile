@@ -9,7 +9,7 @@ opencv-contrib-python = "*"
 gunicorn = "*"
 numpy = "*"
 Jinja2 = ">=2.10.1"
-pytesseract = "0.3.0"
+pytesseract = "*"
 
 [dev-packages]
 
