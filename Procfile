@@ -1,1 +1,1 @@
-web:gunicorn ocr_app.py
+web:gunicorn ocr_app:app
