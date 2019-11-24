@@ -9,7 +9,7 @@
    <h1>{{ msg }}</h1>
    {% endif %}
   
-   <h1>Upload new File</h1>
+   <h1>Upload A Receipt</h1>
   
    <form method=post enctype=multipart/form-data>
      <p><input type=file name=file>
@@ -18,7 +18,7 @@
 
    <h1>Result:</h1>
    {% if img_src %}
-     <img src="{{ picture }}", height="300" width="300">
+     <img src="{{ picture }}", height="500" width="500">
    {% endif %}
   
    {% if extracted_text %}
