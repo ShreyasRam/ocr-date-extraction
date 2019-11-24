@@ -55,32 +55,5 @@ def upload_page():
     elif request.method == 'GET':
             return render_template('upload.html')
 
-
-# @app.route('/'.format(_VERSION), methods=["POST"])
-# def ocr():
-    # # try:
-    # img_url = request.json['image_url']
-    
-    # if img_url:
-
-    #     output= parse_date(img_url)
-    #     return jsonify({"output": output,
-    #      # "parsed_date":d, "detected_objs":d_list
-    #      })
-    # else:
-    #     return jsonify({"error": "only .jpg files, please"})
-    # except:# Exception as e: 
-    #     # print(e)
-    #     return jsonify(
-    #         {"error": "Did you mean to send: {'image_url': 'some_jpeg_url'}"}
-    #     )
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     app.run(debug = True) 
