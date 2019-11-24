@@ -1,1 +1,1 @@
-web:python ocr_app.py runserver 0.0.0.0:$PORT
+web:gunicorn ocr_app.py
