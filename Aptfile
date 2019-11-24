@@ -5,6 +5,6 @@ libice6
 libxrender-dev
 libxext6
 libpng-dev
-libpng12.so.0
+libpng12
 tesseract-ocr
 tesseract-ocr-eng
