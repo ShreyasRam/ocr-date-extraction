@@ -1,1 +1,1 @@
-web:gunicorn ocr_app:app --log-file -
+web gunicorn ocr_app:app
