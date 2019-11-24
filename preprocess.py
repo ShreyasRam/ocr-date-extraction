@@ -5,7 +5,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 from tqdm import tqdm
 
 import tempfile
-import cv2
+
 import imutils
 import requests 
 import numpy as np
