@@ -1,4 +1,4 @@
-import os
+import os, sys
 import logging
 from logging import Formatter, FileHandler
 from flask import Flask, request, jsonify, render_template
@@ -8,6 +8,9 @@ app = Flask(__name__)
 _VERSION = 1
 from werkzeug.utils import secure_filename
 
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 
 uploads_dir = os.path.join(app.instance_path, 'bills')
