@@ -10,6 +10,7 @@ gunicorn = "*"
 numpy = "*"
 Jinja2 = ">=2.10.1"
 pytesseract = "*"
+dateparser = "*"
 
 [dev-packages]
 
