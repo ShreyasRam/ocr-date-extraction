@@ -3,7 +3,7 @@ import logging
 from logging import Formatter, FileHandler
 from flask import Flask, request, jsonify, render_template
 import base64
-from ocr_script import parse_date
+# from ocr_script import parse_date
 app = Flask(__name__)
 _VERSION = 1
 from werkzeug.utils import secure_filename
