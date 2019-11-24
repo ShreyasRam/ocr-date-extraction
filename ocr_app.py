@@ -21,7 +21,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 # def index():
 #     return render_template('upload.html')
 
-@app.route('/ocr', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def upload_page():
     if request.method == 'POST':
         # check if there is a file in the request
