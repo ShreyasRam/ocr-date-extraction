@@ -12,7 +12,7 @@ import dateparser
 from tqdm import tqdm
 import requests 
 from io import BytesIO
-# from preprocess import process_image_for_ocr
+from preprocess import process_image_for_ocr
 
 
 def find_date(regex, text):

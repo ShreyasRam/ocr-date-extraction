@@ -11,7 +11,7 @@ import numpy as np
 from io import BytesIO
 import tempfile
 
-# import cv2
+import cv2
 import logging
 import numpy as np
 from PIL import Image
