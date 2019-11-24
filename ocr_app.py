@@ -21,8 +21,6 @@ app.config['UPLOAD_FOLDER'] = uploads_dir
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 # @app.route('')
-# def index():
-#     return render_template('upload.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_page():
