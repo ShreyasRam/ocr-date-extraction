@@ -20,8 +20,6 @@ app.config['UPLOAD_FOLDER'] = uploads_dir
 # allow files of a specific type
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
-# @app.route('')
-
 @app.route('/', methods=['GET', 'POST'])
 def upload_page():
     if request.method == 'POST':
