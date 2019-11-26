@@ -46,7 +46,7 @@ def upload_page():
                                    msg='Successfully processed',
                                    extracted_text=extracted_text,
                                    picture = encoded_img,
-                                   img_src= uploads_dir + file.filename )
+                                   img_src= uploads_dir + f)
             # return jsonify({"output": extracted_text})
     elif request.method == 'GET':
             return render_template('upload.html')

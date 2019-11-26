@@ -12,6 +12,7 @@ numpy==1.17.4
 opencv-contrib-python==4.1.2.30
 opencv-python==4.1.2.30
 Pillow==6.2.1
+tesseract==4.1.0
 pytesseract==0.3.0
 python-dateutil==2.8.1
 pytz==2019.3
@@ -23,3 +24,4 @@ tzlocal==2.0.0
 urllib3==1.25.7
 Werkzeug==0.16.0
 opencv-python-headless==4.1.2.30
+gunicorn==20.0.2

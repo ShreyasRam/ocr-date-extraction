@@ -1,5 +1,6 @@
 #this is the python file that the flask imports- calls parse_date()function 
-
+import sys
+# sys.path.insert(0, 'lib')
 import re
 import os
 import json
@@ -14,7 +15,7 @@ import requests
 from io import BytesIO
 from preprocess import process_image_for_ocr
 
-
+# pytesseract.pytesseract.tesseract_cmd = '/Users/shreyas/flask-env/ocr-date/lib/tesseract/4.1.0/share/tessdata'
 def find_date(regex, text):
     
     dt = re.findall(regex, text)
