@@ -9,12 +9,12 @@ opencv-contrib-python = "*"
 gunicorn = "*"
 numpy = "*"
 Jinja2 = ">=2.10.1"
-tesseract = '*'
 pytesseract = "*"
 dateparser = "*"
 tqdm = "*"
 requests = "*"
 imutils = "*"
+tesseract = "*"
 
 
 [dev-packages]
