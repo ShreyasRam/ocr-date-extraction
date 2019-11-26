@@ -5,5 +5,8 @@ libice6
 libxrender-dev
 libxext6
 libpng-dev
-tesseract-ocr
+libtesseract-dev
+libleptonica-dev 
+liblept5
+tesseract-ocr -y
 tesseract-ocr-eng
