@@ -8,5 +8,8 @@ libpng-dev
 libtesseract-dev
 libleptonica-dev 
 liblept5
+liblept3
+liblept4
+libgif4
 tesseract-ocr -y
 tesseract-ocr-eng
