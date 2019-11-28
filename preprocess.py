@@ -1,19 +1,10 @@
-import os
 from PIL import Image
-from PIL import ImageFile 
-ImageFile.LOAD_TRUNCATED_IMAGES = True
-from tqdm import tqdm
-
+from PIL import ImageFile
 import tempfile
-import imutils
-import requests 
 import numpy as np
-from io import BytesIO
 import cv2
 import logging
-import numpy as np
-from PIL import Image
-
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 IMAGE_SIZE = 1800
 BINARY_THREHOLD = 180
 
@@ -29,28 +20,20 @@ def get_size_of_scaled_image(im):
     return size
 
 
-def process_image_for_ocr(unproc_img):
+def process_image_for_ocr(file_path):
     logging.info('Processing image for text Extraction')
-    temp_filename = set_image_dpi(unproc_img)
+    temp_filename = set_image_dpi(file_path)
     im_new = remove_noise_and_smooth(temp_filename)
-    img = Image.fromarray(im_new)
-    # gray = cv2.cvtColor(temp_filename, cv2.COLOR_BGR2GRAY)
-    # gray = cv2.threshold(gray, 0, 255,cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-    # img_arr = cv2.medianBlur(gray, 5)
     return im_new
 
 
-def set_image_dpi(unproc_img):
-    # im = Image.open(file_path)
-    response = requests.get(unproc_img)
-    unproc_img = Image.open(BytesIO(response.content))
-    im = unproc_img.convert('RGB')
-    # size = (1800, 1800)
+def set_image_dpi(file_path):
+    im = Image.open(file_path)
+    im = im.convert('RGB')
     size = get_size_of_scaled_image(im)
     im_resized = im.resize(size, Image.ANTIALIAS)
     temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.jpg')
     temp_filename = temp_file.name
-#     im_path = os.path.join('/Users/shreyas/Datasets/',temp_filename.split(sep='/')[-1])
     im_resized.save(temp_filename, dpi=(300, 300))  # best for OCR
     return temp_filename
 
