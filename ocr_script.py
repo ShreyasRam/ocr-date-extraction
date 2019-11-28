@@ -1,8 +1,8 @@
 import re
 import pytesseract
 from PIL import Image
-from PIL import ImageFile
 import dateutil.parser
+from PIL import ImageFile
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
@@ -10,11 +10,11 @@ def find_date(regex, text):
 
     dt = re.findall(regex, text)
     dt = [x.strip(' ') for x in dt]
+    
     if len(dt) > 0:
         for dt_obj in dt:
             try:
                 parsed_date = dateutil.parser.parse(dt_obj, dayfirst=True).strftime('%Y-%m-%d')
-
                 return parsed_date
 
             except:
