@@ -12,6 +12,7 @@ uploads_dir = os.path.join(app.instance_path, 'bills')
 os.makedirs(uploads_dir, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = uploads_dir
 
+ALLOWED_EXTENSION = ['jpg','png','jpeg']
 
 app = Flask(__name__)
 
@@ -27,7 +28,7 @@ def upload_page():
         if image.filename == '':
             return render_template('upload.html', msg='No file selected')
         
-        if image.filename.split(".")[1] not in ['jpg','png','jpeg']:
+        if image.filename.split(".")[1] not in ALLOWED_EXTENSION:
             return render_template('upload.html', msg='Incorrect Image Format')
         
         if image:
