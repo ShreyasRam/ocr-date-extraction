@@ -1,17 +1,19 @@
 import os
-from flask import Flask, request, render_template
 import base64
-from ocr_script import parse_date
-app = Flask(__name__)
-_VERSION = 1
-from werkzeug.utils import secure_filename
 from PIL import Image
+from ocr_script import parse_date
+from werkzeug.utils import secure_filename
 from preprocess import process_image_for_ocr
+from flask import Flask, request, render_template
 
+_VERSION = 1
 
 uploads_dir = os.path.join(app.instance_path, 'bills')
 os.makedirs(uploads_dir, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = uploads_dir
+
+
+app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_page():
@@ -20,16 +22,18 @@ def upload_page():
         if 'file' not in request.files:
             return render_template('upload.html', msg='No file selected')
         image = request.files['file']
-        # if no file is selected
+        
+        # if no file is selected 
         if image.filename == '':
             return render_template('upload.html', msg='No file selected')
         
         if image.filename.split(".")[1] not in ['jpg','png','jpeg']:
             return render_template('upload.html', msg='Incorrect Image Format')
         
-        if image: #and allowed_file(file.filename):
+        if image:
             f = os.path.join(uploads_dir, secure_filename(image.filename))
             image.save(f)
+            
             # call the OCR function on it
             extracted_text = parse_date(f)
             if extracted_text == None:
