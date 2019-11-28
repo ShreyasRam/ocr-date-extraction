@@ -1,24 +1,17 @@
-import os, sys
-import logging
-from logging import Formatter, FileHandler
-from flask import Flask, request, jsonify, render_template
+import os
+from flask import Flask, request, render_template
 import base64
 from ocr_script import parse_date
 app = Flask(__name__)
 _VERSION = 1
 from werkzeug.utils import secure_filename
-
-
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
+from PIL import Image
+from preprocess import process_image_for_ocr
 
 
 uploads_dir = os.path.join(app.instance_path, 'bills')
 os.makedirs(uploads_dir, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = uploads_dir
-
-# allow files of a specific type
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_page():
@@ -26,18 +19,28 @@ def upload_page():
         # check if there is a file in the request
         if 'file' not in request.files:
             return render_template('upload.html', msg='No file selected')
-        file = request.files['file']
+        image = request.files['file']
         # if no file is selected
-        if file.filename == '':
+        if image.filename == '':
             return render_template('upload.html', msg='No file selected')
-
-        if file: #and allowed_file(file.filename):
-            f = os.path.join(uploads_dir, secure_filename(file.filename))
-            file.save(f)
+        
+        if image.filename.split(".")[1] not in ['jpg','png','jpeg']:
+            return render_template('upload.html', msg='Incorrect Image Format')
+        
+        if image: #and allowed_file(file.filename):
+            f = os.path.join(uploads_dir, secure_filename(image.filename))
+            image.save(f)
             # call the OCR function on it
-            extracted_text = parse_date(file)
+            extracted_text = parse_date(f)
+            if extracted_text == None:
+                image_arr = process_image_for_ocr(f)
+                proc_image = Image.fromarray(image_arr)
+
+                extracted_text = parse_date(proc_image)
 
             img_type = os.path.splitext(f)[-1][1:]
+
+            #encoding image to base64
             with open(f, "rb") as image_file:
                 encoded_img = 'data:image/{};base64,'.format(img_type) + base64.b64encode(image_file.read()).decode('ascii')
 
@@ -46,10 +49,10 @@ def upload_page():
                                    msg='Successfully processed',
                                    extracted_text=extracted_text,
                                    picture = encoded_img,
-                                   img_src= uploads_dir + f)
-            # return jsonify({"output": extracted_text})
+                                   img_src= f)
+
     elif request.method == 'GET':
             return render_template('upload.html')
 
 if __name__ == "__main__":
-    app.run(debug = True) 
+    app.run(debug = True)
