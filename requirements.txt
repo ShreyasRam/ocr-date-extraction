@@ -11,7 +11,7 @@ MarkupSafe==1.1.1
 numpy==1.17.4
 opencv-contrib-python==4.1.2.30
 opencv-python==4.1.2.30
-Pillow==6.2.1
+Pillow==9.0.0
 tesseract==4.1.0
 pytesseract==0.3.0
 python-dateutil==2.8.1
